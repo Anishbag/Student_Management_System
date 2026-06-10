@@ -16,7 +16,7 @@ export const uploadProfileImage = async (req, res) => {
 
         res.status(200).json({
             message: "Image uploaded successfully",
-            image: user.profileImage
+            image: `http://localhost:5000/${user.profileImage.replace(/\\/g, "/")}`
         });
 
     } catch (error) {res.status(500).json({
