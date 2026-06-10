@@ -36,10 +36,8 @@ export const registerUser = async (req, res) =>{
         _id : user._id,
         name : user.name,
         email : user.email,
-        role : user.role,
-        token : generateToken(
-            user._id
-        )
+        // role : user.role,
+        token : generateToken(user)
 
     });
 
@@ -58,8 +56,8 @@ export const loginUser = async (req,res) => {
             message :"Login Successfully Done",
             _id : user._id,
             name : user.name,
-            role : user.role,
-            token : generateToken(user._id)
+            //role : user.role,
+            token : generateToken(user)
 
 
         });
