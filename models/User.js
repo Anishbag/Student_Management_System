@@ -20,6 +20,11 @@ const userSchema = new mongoose.Schema(
             type : String,
             enum : ["employee","admin"],
             default : "employee"
+        },
+        
+        profileImage: {
+                type: String,
+                default: ""
         }
     },
     {timestamps : true}
