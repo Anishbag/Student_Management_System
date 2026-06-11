@@ -10,7 +10,7 @@ router.post("/",protect,createEmployee);
 router.get("/",protect,getEmployees);
 router.get("/:id",protect,getEmployeeById);
 router.put("/:id",protect,updateEmployee);
-router.put("/:id",protect,deleteEmployee);
+router.delete("/:id",protect,deleteEmployee);
 
 
 export default router;

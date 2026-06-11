@@ -3,6 +3,7 @@ import cors from "cors"
 import authRoutes from "./routes/authRoutes.js";
 import userRouters from "./routes/userRoutes.js";
 import employeeRoutes from "./routes/employeeRoutes.js";
+import taskRoutes from "./routes/taskRoutes.js"
 
 const app = express();
 
@@ -16,5 +17,7 @@ app.use("/api/users",userRouters);
 
 
 app.use("/api/employees",employeeRoutes);
+
+app.use("/api/tasks",taskRoutes)
 
 export default app;
