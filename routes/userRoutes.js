@@ -11,8 +11,6 @@ router.post("/upload-profile",
   uploadProfileImage
 );
 
-router.get("/test", (req, res) => {
-  res.send("Route Working anish");
-});
+
 
 export default router;

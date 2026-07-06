@@ -43,31 +43,33 @@ export const registerUser = async (req, res) =>{
 
 };
 
-export const loginUser = async (req,res) => {
-    const {email,password} = req.body;
+export const loginUser = async (req, res) => {
+    const { email, password } = req.body;
 
-    const user = await User.findOne ({email});
+    console.log("Email:", email);
+    console.log("Password:", password);
 
-    if (user && (await bcrypt.compare(
-        password,user.password
-    )))
-    {
-        res.json({
-            message :"Login Successfully Done",
-            _id : user._id,
-            name : user.name,
-            //role : user.role,
-            token : generateToken(user)
+    const user = await User.findOne({ email });
 
+    console.log("User:", user);
 
-        });
+    if (user) {
+        const match = await bcrypt.compare(password, user.password);
+        console.log("Password Match:", match);
 
+        if (match) {
+            return res.json({
+                message: "Login Successfully Done",
+                _id: user._id,
+                name: user.name,
+                token: generateToken(user)
+            });
+        }
     }
-    else {
-        res.status(401).json({
-            message : "Invalid email or password"
-        })
-    }
+
+    return res.status(401).json({
+        message: "Invalid email or password"
+    });
 };
 
 
@@ -80,7 +82,7 @@ export const getProfile = async (req,res) =>{
                 message : "User not found"
             });
         }
-        res.ststus(200).json(user);
+        res.status(200).json(user);
     } 
     catch (error){
         res.status(500).json({
